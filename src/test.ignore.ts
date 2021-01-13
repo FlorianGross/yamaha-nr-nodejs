@@ -3,7 +3,7 @@ import { YamahaNetworkReceiver } from './YamahaNetworkReceiver';
 
 let iteration = 0;
 
-var networkReceiver = new YamahaNetworkReceiver("192.168.1.11");
+var networkReceiver = new YamahaNetworkReceiver("169.254.112.202");
 networkReceiver.init(5000);
 networkReceiver.getVolume().then(resp => {
     console.log(resp);
@@ -32,7 +32,7 @@ const interval = setInterval(() => {
 setTimeout(() => {
     networkReceiver.control.setInput.digital1().then(response => {
         console.log(response);
-        
+
         setTimeout(() => {
             networkReceiver.getVolume().then(origVol => {
                 networkReceiver.control.volume.setVolumeLevel(10).then(volume => {
@@ -42,7 +42,7 @@ setTimeout(() => {
                         networkReceiver.control.volume.setVolumeLevel(origVol);
                     });
                 });
-            });            
+            });
         }, 1000);
-    });    
+    });
 }, 9000);
